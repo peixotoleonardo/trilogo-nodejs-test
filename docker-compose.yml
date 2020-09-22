@@ -1,9 +1,24 @@
 version: '3'
 
 services:
+  chat: 
+    build: .
+    image: trilogo/chat
+    restart: unless-stopped
+    environment:
+      DATABASE_HOST: 'mongodb'
+    ports:
+      - 3000:3000
+  
   mongodb:
     image: mongo:latest
+    restart: unless-stopped
     environment:
       - MONGODB_DATABASE='trilogo'
     ports:
       - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+
+volumes:
+  mongodb_data_container:
