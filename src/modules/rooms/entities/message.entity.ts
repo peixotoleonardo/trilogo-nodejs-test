@@ -10,6 +10,8 @@ export class Message {
   @ManyToOne(type => User, user => user.messages)
   user: User;
 
+  read: boolean
+
   @CreateDateColumn({ name: 'created_at' })
   date: Date;
 }

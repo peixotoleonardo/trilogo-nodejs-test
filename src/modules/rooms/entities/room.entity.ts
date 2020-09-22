@@ -1,4 +1,4 @@
-import { Column, Entity, ObjectID, ObjectIdColumn, OneToMany } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ObjectID, ObjectIdColumn, OneToMany, UpdateDateColumn } from 'typeorm';
 
 import { User } from 'src/modules/users/entities/user.entity';
 import { Message } from './message.entity';
@@ -22,4 +22,10 @@ export class Room {
 
   @Column(type => Message)
   messages: Message[]
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 }
