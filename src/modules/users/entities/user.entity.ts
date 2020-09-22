@@ -31,4 +31,8 @@ export class User {
   async beforeInsert() {
     this.password = await bcrypt.hash(this.password, BCRYPT_HASH_ROUND);
   }
+
+  async comparePassword(password: string): Promise<boolean> {
+    return await bcrypt.compare(password, this.password);
+  }
 }

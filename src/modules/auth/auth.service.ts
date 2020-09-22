@@ -41,7 +41,7 @@ export class AuthService {
         throw new NotFoundException(`User with email ${login.email} not found`);
       }
 
-      const isValid = await this.checkUserPassword(user, login.password);
+      const isValid = await user.comparePassword(login.password);
 
       if (!isValid) {
         throw new BadRequestException('The password is not invalid');
